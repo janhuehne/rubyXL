@@ -360,7 +360,9 @@ module RubyXL
         if File.directory?(File.join(dir_path,'xl','drawings'))
           files['drawings'] = {}
           drawings_path = File.join(dir_path,'xl','drawings','_rels')
-
+          
+          Dir.mkdir(drawings_path) 
+          
           dir = Dir.new(drawings_path).entries.reject {|f| [".", "..", ".DS_Store"].include? f}
           dir.each_with_index do |draw,i|
             files['drawings'][i+1] = File.read(File.join(drawings_path,draw))
